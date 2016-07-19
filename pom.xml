@@ -54,6 +54,33 @@
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.jfrog.buildinfo</groupId>
+                <artifactId>artifactory-maven-plugin</artifactId>
+                <version>2.6.1</version>
+                <inherited>false</inherited>
+                <executions>
+                    <execution>
+                        <id>build-info</id>
+                        <goals>
+                            <goal>publish</goal>
+                        </goals>
+                        <configuration>
+                            <publisher>
+                                <contextUrl>{{ARTIFACTORY_CONTEXT_URL|"https://jbaruch.jfrog.io/jbaruch"}}</contextUrl>
+                                <username>{{ARTIFACTORY_USER|"admin"}}</username>
+                                <password>{{ARTIFACTORY_API_KEY}}</password>
+                                <repoKey>libs-release-local</repoKey>
+                                <snapshotRepoKey>libs-snapshot-local</snapshotRepoKey>
+                            </publisher>
+                            <buildInfo>
+                                <buildNumber>{{CI_BUILD_NUMBER}}</buildNumber>
+                                <buildUrl>{{CI_BUILD_URL}}</buildUrl>
+                            </buildInfo>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
