@@ -1,2 +1,2 @@
 = CI/CD Pipeline - Java Code
-https://codeship.com/projects/164080[image:https://codeship.com/projects/bda14ac0-3001-0134-fa8a-0637f2a9daca/status?branch=master[Codeship Status for cicd-docker-java/cicd-pipeline-java]]
+image:https://travis-ci.org/cicd-docker-java/cicd-pipeline-docker.svg?branch=master["Build Status", link="https://travis-ci.org/cicd-docker-java/cicd-pipeline-docker"]

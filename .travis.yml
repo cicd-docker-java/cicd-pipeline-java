@@ -1,0 +1,5 @@
+language: java
+script: ./mvnw -B deploy
+install: echo 'installing'
+jdk:
+  - oraclejdk8

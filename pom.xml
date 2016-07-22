@@ -74,8 +74,8 @@
                                 <snapshotRepoKey>libs-snapshot-local</snapshotRepoKey>
                             </publisher>
                             <buildInfo>
-                                <buildNumber>{{CI_BUILD_NUMBER}}</buildNumber>
-                                <buildUrl>{{CI_BUILD_URL}}</buildUrl>
+                                <buildNumber>{{TRAVIS_BUILD_NUMBER}}</buildNumber>
+                                <buildUrl>https://travis-ci.org/{{TRAVIS_REPO_SLUG}}/builds/{{TRAVIS_BUILD_ID}}</buildUrl>
                             </buildInfo>
                         </configuration>
                     </execution>
@@ -355,18 +355,18 @@
             <id>buildnumber-defined</id>
             <activation>
                 <property>
-                    <name>env.CI_BUILD_NUMBER</name>
+                    <name>env.TRAVIS_BUILD_NUMBER</name>
                 </property>
             </activation>
             <properties>
-                <project.version>${env.CI_BUILD_NUMBER}</project.version>
+                <project.version>${env.TRAVIS_BUILD_NUMBER}</project.version>
             </properties>
         </profile>
         <profile>
             <id>buildnumber-undefined</id>
             <activation>
                 <property>
-                    <name>!env.CI_BUILD_NUMBER</name>
+                    <name>!env.TRAVIS_BUILD_NUMBER</name>
                 </property>
             </activation>
             <properties>
