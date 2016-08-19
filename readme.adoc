@@ -1,2 +1,2 @@
 = CI/CD Pipeline - Java Code
-
+image:https://travis-ci.org/cicd-docker-java/cicd-pipeline-docker.svg?branch=master["Build Status", link="https://travis-ci.org/cicd-docker-java/cicd-pipeline-docker"]

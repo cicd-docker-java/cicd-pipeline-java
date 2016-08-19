@@ -4,7 +4,7 @@
 
     <groupId>org.couchbase.sample</groupId>
     <artifactId>couchbase-javaee</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>${project.version}</version>
     <packaging>war</packaging>
 
     <name>couchbase-javaee</name>
@@ -54,6 +54,33 @@
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.jfrog.buildinfo</groupId>
+                <artifactId>artifactory-maven-plugin</artifactId>
+                <version>2.6.1</version>
+                <inherited>false</inherited>
+                <executions>
+                    <execution>
+                        <id>build-info</id>
+                        <goals>
+                            <goal>publish</goal>
+                        </goals>
+                        <configuration>
+                            <publisher>
+                                <contextUrl>{{ARTIFACTORY_CONTEXT_URL|"https://jbaruch.jfrog.io/jbaruch"}}</contextUrl>
+                                <username>{{ARTIFACTORY_USER|"admin"}}</username>
+                                <password>{{ARTIFACTORY_API_KEY}}</password>
+                                <repoKey>libs-release-local</repoKey>
+                                <snapshotRepoKey>libs-snapshot-local</snapshotRepoKey>
+                            </publisher>
+                            <buildInfo>
+                                <buildNumber>{{TRAVIS_BUILD_NUMBER}}</buildNumber>
+                                <buildUrl>https://travis-ci.org/{{TRAVIS_REPO_SLUG}}/builds/{{TRAVIS_BUILD_ID}}</buildUrl>
+                            </buildInfo>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
@@ -82,7 +109,7 @@
                                             <port>8080</port>
                                         </ports>
                                     </build>
-                                    
+
                                     <run>
                                         <ports>
                                             <port>8080:8080</port>
@@ -201,7 +228,7 @@
                                 <groupId>org.glassfish.main.deployment</groupId>
                                 <artifactId>deployment-client</artifactId>
                                 <version>4.1.1</version>
-                            </dependency>            
+                            </dependency>
                         </dependencies>
                     </plugin>
                 </plugins>
@@ -227,7 +254,7 @@
                                     <arguments>
                                         <argument>-v</argument>
                                         <argument>-X</argument>
-                                        <argument>POST</argument> 
+                                        <argument>POST</argument>
                                         <argument>http://${docker.host}:${couchbase.port}/pools/default</argument>
                                         <argument>-d</argument>
                                         <argument>memoryQuota=300</argument>
@@ -248,7 +275,9 @@
                                         <argument>-v</argument>
                                         <argument>-X</argument>
                                         <argument>POST</argument>
-                                        <argument>http://${docker.host}:${couchbase.port}/node/controller/setupServices</argument>
+                                        <argument>
+                                            http://${docker.host}:${couchbase.port}/node/controller/setupServices
+                                        </argument>
                                         <argument>-d</argument>
                                         <argument>services=kv%2Cn1ql%2Cindex</argument>
                                     </arguments>
@@ -265,7 +294,7 @@
                                     <arguments>
                                         <argument>-v</argument>
                                         <argument>-X</argument>
-                                        <argument>POST</argument> 
+                                        <argument>POST</argument>
                                         <argument>http://${docker.host}:${couchbase.port}/settings/web</argument>
                                         <argument>-d</argument>
                                         <argument>port=8091</argument>
@@ -289,7 +318,7 @@
                                         <argument>-u</argument>
                                         <argument>Administrator:password</argument>
                                         <argument>-X</argument>
-                                        <argument>POST</argument> 
+                                        <argument>POST</argument>
                                         <argument>http://${docker.host}:${couchbase.port}/settings/indexes</argument>
                                         <argument>-d</argument>
                                         <argument>storageMode=memory_optimized</argument>
@@ -310,7 +339,8 @@
                                         <argument>Administrator:password</argument>
                                         <argument>-X</argument>
                                         <argument>POST</argument>
-                                        <argument>http://${docker.host}:${couchbase.port}/sampleBuckets/install</argument>
+                                        <argument>http://${docker.host}:${couchbase.port}/sampleBuckets/install
+                                        </argument>
                                         <argument>-d</argument>
                                         <argument>["travel-sample"]</argument>
                                     </arguments>
@@ -320,6 +350,28 @@
                     </plugin>
                 </plugins>
             </build>
+        </profile>
+        <profile>
+            <id>buildnumber-defined</id>
+            <activation>
+                <property>
+                    <name>env.TRAVIS_BUILD_NUMBER</name>
+                </property>
+            </activation>
+            <properties>
+                <project.version>${env.TRAVIS_BUILD_NUMBER}</project.version>
+            </properties>
+        </profile>
+        <profile>
+            <id>buildnumber-undefined</id>
+            <activation>
+                <property>
+                    <name>!env.TRAVIS_BUILD_NUMBER</name>
+                </property>
+            </activation>
+            <properties>
+                <project.version>1.0-SNAPSHOT</project.version>
+            </properties>
         </profile>
     </profiles>
 </project>
