@@ -1,5 +1,5 @@
 = CI/CD Pipeline - Java Code
 
-Source code: GitHub
-* Build status: image::https://travis-ci.org/cicd-docker-java/cicd-pipeline-docker.svg?branch=master["Build Status", link="https://travis-ci.org/cicd-docker-java/cicd-pipeline-docker"]
-* Artifactory repository: https://jbaruch.jfrog.io (running on GCE)
+. Source code: GitHub
+. Build status: image::https://travis-ci.org/cicd-docker-java/cicd-pipeline-docker.svg?branch=master["Build Status", link="https://travis-ci.org/cicd-docker-java/cicd-pipeline-docker"]
+. Artifactory repository: https://jbaruch.jfrog.io (running on GCE)
