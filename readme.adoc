@@ -3,3 +3,18 @@
 - *Source code*: GitHub
 - *Build status*: image:https://travis-ci.org/cicd-docker-java/cicd-pipeline-docker.svg?branch=master["Build Status", link="https://travis-ci.org/cicd-docker-java/cicd-pipeline-docker"]
 - *Artifact repository*: https://jbaruch.jfrog.io (running on GCE)
+
+== Flow
+
+== Automated
+
+. Check the latest version at https://jbaruch.jfrog.io/jbaruch/webapp/#/artifacts/browse/tree/General/docker-dev-local/couchbase-javaee.
+. `git push` in the workspace
+. Check the build status to stay green
+. TODO: Add downstream test workspace
+. Make sure a new artifact is pushed to the repository and the version is updated
+
+== Manual
+
+TODO
+
