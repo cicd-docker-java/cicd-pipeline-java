@@ -6,7 +6,7 @@
 
 == Flow
 
-== Automated
+=== Automated
 
 . Check the latest version at https://jbaruch.jfrog.io/jbaruch/webapp/#/artifacts/browse/tree/General/docker-dev-local/couchbase-javaee.
 . `git push` in the workspace
@@ -14,7 +14,7 @@
 . TODO: Add downstream test workspace
 . Make sure a new artifact is pushed to the repository and the version is updated
 
-== Manual
+=== Manual
 
 TODO
 
