@@ -8,13 +8,15 @@
 
 === Automated
 
-. Check the latest version at https://jbaruch.jfrog.io/jbaruch/webapp/#/artifacts/browse/tree/General/docker-dev-local/couchbase-javaee.
+. Check the latest version at https://jbaruch.jfrog.io/jbaruch/webapp/#/builds/couchbase-javaee.
 . `git push` in the workspace
-. Check the build status to stay green
-. TODO: Add downstream test workspace
-. Make sure a new artifact is pushed to the repository and the version is updated
+.. Triggers a new build in Travis. Check the build status to stay green.
+.. TODO: Add downstream test workspace
+.. Make sure a new artifact is pushed to the repository and the version is updated
 
 === Manual
 
 TODO
+
+. `mvnw deploy` to use pre-configured repository and push the generated artifact to repository
 
