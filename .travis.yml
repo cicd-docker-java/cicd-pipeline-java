@@ -3,9 +3,9 @@ language: java
 script: |-
   ./mvnw -B deploy \
   && echo 'Testing... Testing... Testing...' \
-  && echo 'Promoting the release because of the successul tests.'
+  && echo 'Promoting the release because of the successul tests.' \
   && curl -i -u $ARTIFACTORY_USER:$ARTIFACTORY_API_KEY -H "Content-Type:application/json" -X POST https://jbaruch.jfrog.io/jbaruch/api/build/promote/couchbase-javaee/$TRAVIS_BUILD_NUMBER -d '{"status": "released","comment" : "Automatically tested on all target platforms.","ciUser": "'$USER'","targetRepo" : "libs-release-local"}' \
-  && echo 'Triggering Docker build.'
+  && echo 'Triggering Docker build.' \
   && curl -s -X POST -H "Content-Type: application/json" -H "Accept: application/json" -H "Travis-API-Version: 3" -H "Authorization: token $TRAVIS_TOKEN" https://api.travis-ci.org/repo/cicd-docker-java%2Fcicd-pipeline-docker/requests -d '{"request": {"message":"Docker build triggered because of a new WAR build couchbase-javaee:'$TRAVIS_BUILD_NUMBER'","branch":"master"}}'
 
 install: echo 'installing'
