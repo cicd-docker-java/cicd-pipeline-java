@@ -4,8 +4,8 @@ script:
 script: |-
   ./mvnw -B deploy \
   && echo 'testing... testing... testing...' \
-  && curl -i -u $ARTIFACTORY_USER:$ARTIFACTORY_API_KEY -H "Content-Type:application/json" -X POST https://jbaruch.jfrog.io/jbaruch/api/build/promote/couchbase-javaee/$TRAVIS_BUILD_NUMBER -d '{"status": "released","comment" : "Automatically tested on all target platforms.","ciUser": "$USER","targetRepo" : "libs-release-local"}' \
-  && echo 'triggering docker here'
+  && curl -i -u $ARTIFACTORY_USER:$ARTIFACTORY_API_KEY -H "Content-Type:application/json" -X POST https://jbaruch.jfrog.io/jbaruch/api/build/promote/couchbase-javaee/$TRAVIS_BUILD_NUMBER -d '{"status": "released","comment" : "Automatically tested on all target platforms.","ciUser": "'$USER'","targetRepo" : "libs-release-local"}' \
+  && curl -s -X POST -H "Content-Type: application/json" -H "Accept: application/json" -H "Travis-API-Version: 3" -H "Authorization: token $TRAVIS_TOKEN" https://api.travis-ci.org/repo/cicd-docker-java%2Fcicd-pipeline-docker/requests -d '{"request": {"branch":"master"}}'
 
 install: echo 'installing'
 jdk:
