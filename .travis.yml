@@ -3,9 +3,9 @@ script:
 
 script: |-
   ./mvnw -B deploy \
-  echo 'testing... testing... testing...' \
-  echo 'promoting here' \
-  echo 'triggering docker here'
+  && echo 'testing... testing... testing...' \
+  && echo 'promoting here' \
+  && echo 'triggering docker here'
 
 install: echo 'installing'
 jdk:
