@@ -70,8 +70,7 @@
                                 <contextUrl>{{ARTIFACTORY_CONTEXT_URL|"https://jbaruch.jfrog.io/jbaruch"}}</contextUrl>
                                 <username>{{ARTIFACTORY_USER|"admin"}}</username>
                                 <password>{{ARTIFACTORY_API_KEY}}</password>
-                                <repoKey>libs-release-local</repoKey>
-                                <snapshotRepoKey>libs-snapshot-local</snapshotRepoKey>
+                                <repoKey>libs-dev-local</repoKey>
                             </publisher>
                             <buildInfo>
                                 <buildNumber>{{TRAVIS_BUILD_NUMBER}}</buildNumber>

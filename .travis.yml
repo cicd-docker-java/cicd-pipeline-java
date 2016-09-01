@@ -1,5 +1,12 @@
 language: java
-script: ./mvnw -B deploy
+script:
+
+script: |-
+  ./mvnw -B deploy \
+  echo 'testing... testing... testing...' \
+  echo 'promoting here' \
+  echo 'triggering docker here'
+
 install: echo 'installing'
 jdk:
   - oraclejdk8
