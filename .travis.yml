@@ -8,6 +8,6 @@ script: |-
   && echo 'Triggering Docker build.' \
   && curl -s -X POST -H "Content-Type: application/json" -H "Accept: application/json" -H "Travis-API-Version: 3" -H "Authorization: token $TRAVIS_TOKEN" https://api.travis-ci.org/repo/cicd-docker-java%2Fcicd-pipeline-docker/requests -d '{"request": {"message":"Docker build triggered because of a new WAR build couchbase-javaee:'$TRAVIS_BUILD_NUMBER'","branch":"master","config":{"env":{"JAVA_BUILD_NUMBER":"'$TRAVIS_BUILD_NUMBER'"}}}}'
 
-install: echo 'Installing.'
+install: echo 'Installing'
 jdk:
   - oraclejdk8
